@@ -3,20 +3,20 @@ const client = new Discord.Client();
 const token = process.env.token;
 const moment = require("moment");
 require("moment-duration-format");
-const welcomeChannelName = "안녕하세요";
-const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "어서오세요.";
-const byeChannelComment = "안녕히가세요.";
+const welcomeChannelName = "오늘의이슈";
+const byeChannelName = "오늘의이슈";
+const welcomeChannelComment = "`님이 입장했습니다.`";
+const byeChannelComment = "`님이 퇴장했습니다.`";
 const adminUserId = 477076429058605056;
 
 client.on('ready', () => {
-  console.log('켰다.');
-  client.user.setPresence({ game: { name: '!help를 쳐보세요.' }, status: 'online' })
+  console.log('봇이켜졌습니다');
+  client.user.setPresence({ game: { name: '!도움' }, status: 'online' })
 
   let state_list = [
-    '!help를 쳐보세요.',
-    '메렁메렁',
-    '에베베베베',
+    '!도움',
+    'BOT MADE BY RABBIT',
+    '까실서버봇',
   ]
   let state_list_index = 1;
   let change_delay = 3000; // 이건 초입니당. 1000이 1초입니당.
@@ -43,7 +43,7 @@ client.on("guildMemberAdd", (member) => {
 
   welcomeChannel.send(`<@${newUser.id}> ${welcomeChannelComment}\n`);
 
-  member.addRole(guild.roles.find(role => role.name == "게스트"));
+  member.addRole(guild.roles.find(role => role.name == "일반인"));
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -51,7 +51,7 @@ client.on("guildMemberRemove", (member) => {
   const deleteUser = member.user;
   const byeChannel = guild.channels.find(channel => channel.name == byeChannelName);
 
-  byeChannel.send(`<@${deleteUser.id}> ${byeChannelComment}\n`);
+  byeChannel.send(`*${deleteUser.id}* ${byeChannelComment}\n`);
 });
 
 client.on('message', (message) => {
@@ -66,7 +66,7 @@ client.on('message', (message) => {
      let msg = message.content;
      embed.setColor('#186de6')
      embed.setAuthor(user+'이(가) 메세지를 보냈습니다.', img)
-     embed.setFooter(`콜라곰 BOT ❤️`)
+     embed.setFooter(`BOT MADE BY RABBIT`)
      embed.addField('메세지 내용', msg, true);
      embed.setTimestamp()
      client.users.find(x => x.id == adminUserId).send(embed);
@@ -74,7 +74,7 @@ client.on('message', (message) => {
 
   if(message.content.startsWith('!역할추가')) {
     if(message.channel.type == 'dm') {
-      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
+      return message.reply('`dm에서 사용할 수 없는 명령어 입니다.`');
     }
     if(message.channel.type != 'dm' && checkPermission(message)) return
 
@@ -88,13 +88,13 @@ client.on('message', (message) => {
     }
   }
 
-  if(message.content == '!si') {
+  if(message.content == '!정보') {
     let embed = new Discord.RichEmbed()
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
     var duration = moment.duration(client.uptime).format(" D [일], H [시간], m [분], s [초]");
     embed.setColor('#186de6')
-    embed.setAuthor('server info of 콜라곰 BOT', img)
-    embed.setFooter(`콜라곰 BOT ❤️`)
+    embed.setAuthor('까실서버봇의 정보', img)
+    embed.setFooter(`BOT MADE BY RABBIT`)
     embed.addBlankField()
     embed.addField('RAM usage',    `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
     embed.addField('running time', `${duration}`, true);
@@ -119,116 +119,211 @@ client.on('message', (message) => {
     message.channel.send(embed);
   }
 
-  if(message.content == 'ping') {
-    return message.reply('pong');
-  }
-
-  if(message.content == 'embed') {
-    let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
+  if(message.content == '!날씨') {
+    let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
     let embed = new Discord.RichEmbed()
-      .setTitle('타이틀')
-      .setURL('http://www.naver.com')
-      .setAuthor('나긋해', img, 'http://www.naver.com')
-      .setThumbnail(img)
-      .addBlankField()
-      .addField('Inline field title', 'Some value here')
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
-      .addBlankField()
-      .setTimestamp()
-      .setFooter('나긋해가 만듬', img)
+      .setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
+      .addField('**온도**', '최저 21˚\n최고26˚', true)
+      .addField('**체감온도**', '21.9˚', true)
+      .addField('**날씨**', '비', true)
+      .addField('**미세먼지**', '좋음(56㎍/㎥)', true)
+      .addField('**초미세먼지**', '좋음(35㎍/㎥)', true)
+      .addField('**오존지수**', '보통(0.031ppm)', true)
+      .setColor('#F5FF00')
+      .setFooter('2020년 09월 06일 기준입니다', img)
 
-    message.channel.send(embed)
-  } else if(message.content == '!help') {
-    let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
-    let commandList = [
-      {name: '!help', desc: 'help'},
-      {name: 'ping', desc: '현재 핑 상태'},
-      {name: 'embed', desc: 'embed 예제1'},
-      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
-      {name: '!전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기'},
-      {name: '!청소', desc: '텍스트 지움'},
-      {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
-      {name: '!초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기'},
-    ];
-    let commandStr = '';
-    let embed = new Discord.RichEmbed()
-      .setAuthor('Help of 콜라곰 BOT', helpImg)
-      .setColor('#186de6')
-      .setFooter(`콜라곰 BOT ❤️`)
-      .setTimestamp()
-    
-    commandList.forEach(x => {
-      commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
-    });
+      message.channel.send(embed)
+    } else if(message.content == '!한강물온도') {
+        let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+        let embed = new Discord.RichEmbed()
+          .setTitle(':ocean: 현재 한강물의 온도')
+          .addField('**한강물의 온도**', '22.1℃', true)
+          .setColor('#0011ff')
+          .setFooter('2020년 09월 06일 기준입니다', img)
 
-    embed.addField('Commands: ', commandStr);
 
-    message.channel.send(embed)
-  } else if(message.content == '!초대코드2') {
-    client.guilds.array().forEach(x => {
-      x.channels.find(x => x.type == 'text').createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
-        .then(invite => {
-          message.channel.send(invite.url)
-        })
-        .catch((err) => {
-          if(err.code == 50013) {
-            message.channel.send('**'+x.channels.find(x => x.type == 'text').guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
-          }
-        })
-    });
-  } else if(message.content == '!초대코드') {
-    if(message.channel.type == 'dm') {
-      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
-    }
-    message.guild.channels.get(message.channel.id).createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
-      .then(invite => {
-        message.channel.send(invite.url)
-      })
-      .catch((err) => {
-        if(err.code == 50013) {
-          message.channel.send('**'+message.guild.channels.get(message.channel.id).guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
-        }
-      })
-  } else if(message.content.startsWith('!전체공지2')) {
-    if(checkPermission(message)) return
-    if(message.member != null) { // 채널에서 공지 쓸 때
-      let contents = message.content.slice('!전체공지2'.length);
+
+      message.channel.send(embed)
+
+              } else if(message.content == '!코로나') {
+                  let helpImg = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+                  let commandList = [
+                    {name: '!코로나 전국', desc: '코로나 전국'},
+                    {name: '!코로나 서울', desc: '코로나 서울'},
+                    {name: '!코로나 인천', desc: '코로나 인천'},
+                    {name: '!코로나 경기', desc: '코로나 경기'},
+                    {name: '!코로나 순위', desc: '코로나 순위'},
+                ];
+                  let commandStr = '';
+                  let embed = new Discord.RichEmbed()
+                    .setAuthor('코로나', helpImg)
+                    .setColor('#ff00df')
+                    .setFooter(`BOT MADE BY RABBIT`)
+                    commandList.forEach(x => {
+                      commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
+                    });
+            
+                embed.addField('명령어: ', commandStr);
+               
+                message.channel.send(embed)
+                
+     } else if(message.content == '!코로나 순위') {
+      let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
       let embed = new Discord.RichEmbed()
-        .setAuthor('공지 of 콜라곰 BOT')
-        .setColor('#186de6')
-        .setFooter(`콜라곰 BOT ❤️`)
-        .setTimestamp()
-  
-      embed.addField('공지: ', contents);
-  
-      message.member.guild.members.array().forEach(x => {
-        if(x.user.bot) return;
-        x.user.send(embed)
-      });
-  
-      return message.reply('공지를 전송했습니다.');
-    } else {
-      return message.reply('채널에서 실행해주세요.');
-    }
-  } else if(message.content.startsWith('!전체공지')) {
-    if(checkPermission(message)) return
-    if(message.member != null) { // 채널에서 공지 쓸 때
-      let contents = message.content.slice('!전체공지'.length);
-      message.member.guild.members.array().forEach(x => {
-        if(x.user.bot) return;
-        x.user.send(`<@${message.author.id}> ${contents}`);
-      });
-  
-      return message.reply('공지를 전송했습니다.');
-    } else {
-      return message.reply('채널에서 실행해주세요.');
-    }
+        .setTitle('코로나-19 한국 순위')
+        .addField('**데이터 출처 : Ministry of Health and Welfare of Korea**', 'http://ncov.mohw.go.kr/index.jsp', true)
+        .setColor('#6799FF')
+        .addField('**최신 데이터**', '해당 자료는 2020년 9월 6일 00시 기준 자료입니다.')
+        .addField('**대구 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ (7,082)**', '**서울 ■■■■■■■■■■■■■■■■■■■■■■ (4,314)**')
+        .addField('**경기 ■■■■■■■■■■■■■■■■■■■■■ (3,625)**', '**경북 ■■■■■■■■■■■■■■■■■■■■ (1,475)**')
+        .addField('**검역 ■■■■■■■■■■■■■■■■■ (1,376)**', '**인천 ■■■■■■■■■■■■■ (796)**')
+        .addField('**광주 ■■■■■■■■■■■■ (420)**', '**충남 ■■■■■■■■■■■ (380)**')
+        .addField('**부산 ■■■■■■■■■■ (331)**', '**대전 ■■■■■■■■■ (293)**')
+        .addField('**경남 ■■■■■■■■■ (257)**', '**강원 ■■■■■■■■ (210)**')
+        .addField('**전남 ■■■■■■■■ (159)**', '**충북 ■■■■■■ (141)**')
+        .addField('**울산 ■■■■■ (113)**', '**전북 ■■■ (90)**')
+        .addField('**세종 ■■ (67)**', '**제주 ■ (48)**')
+        .setFooter('BOT MADE BY RABBIT', img)
+    message.channel.send(embed)
+                
+    } else if(message.content == '!코로나 전국') {
+      let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+      let embed = new Discord.RichEmbed()
+        .setTitle('코로나-19 한국 현황')
+        .addField('**데이터 출처 : Ministry of Health and Welfare of Korea**', 'http://ncov.mohw.go.kr/index.jsp', true)
+        .addField('**최신 데이터**', '해당 자료는 2020년 9월 7일 00시 기준 자료입니다.')
+        .addField('**확진환자(누적)**', '21,177(+ 167)', true)
+        .addField('**완치환자(격리해제)**', '16,146(+ 137)', true)
+        .addField('**치료중(격리 중)**', '4,697(+ 29)', true)
+        .addField('**사망**', '334(+ 1)', true)
+        .addField('**누적확진률**', '1.1 %', true)
+        .addField('**- 최신 브리핑 1 : 코로나바이러스감염증-19 국내 발생 현황 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359764')
+        .addField('**- 최신 브리핑 2 : 코로나바이러스감염증-19 정례브리핑 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359766')
+        .setColor('#6799FF')
+        .setFooter('BOT MADE BY RABBIT', img)
+    message.channel.send(embed)
+
+  } else if(message.content == '!코로나 인천') {
+    let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+    let embed = new Discord.RichEmbed()
+      .setTitle('코로나-19 인천 현황')
+      .addField('**데이터 출처 : Ministry of Health and Welfare of Korea**', 'http://ncov.mohw.go.kr/index.jsp', true)
+      .addField('**최신 데이터**', '해당 자료는 2020년 7월 18일 00시 기준 자료입니다.')
+      .addField('**확진환자(누적)**', '796(+ 12)', true)
+      .addField('**완치환자(격리해제)**', '492', true)
+      .addField('**치료중(격리 중)**', '301', true)
+      .addField('**사망**', '3', true)
+      .addField('**10만명당 발생률**', '26.93명', true)
+      .addField('**전국대비 확진자 비율**', '3.76 %', true)
+      .addField('**- 최신 브리핑 1 : 코로나바이러스감염증-19 국내 발생 현황 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359764')
+      .addField('**- 최신 브리핑 2 : 코로나바이러스감염증-19 정례브리핑 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359766')
+      .setColor('#6799FF')
+      .setFooter('BOT MADE BY RABBIT', img)
+      
+      
+  message.channel.send(embed)
+
+} else if(message.content == '!코로나 서울') {
+  let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+  let embed = new Discord.RichEmbed()
+    .setTitle('코로나-19 서울 현황')
+    .addField('**데이터 출처 : Ministry of Health and Welfare of Korea**', 'http://ncov.mohw.go.kr/index.jsp', true)
+    .addField('**최신 데이터**', '해당 자료는 2020년 9월 6일 00시 기준 자료입니다.')
+    .addField('**확진환자(누적)**', '4,314(+ 63)', true)
+    .addField('**완치환자(격리해제)**', '2,225', true)
+    .addField('**치료중(격리 중)**', '2,063', true)
+    .addField('**사망**', '26', true)
+    .addField('**10만명당 발생률**', '44.32명', true)
+    .addField('**전국대비 확진자 비율**', '20.37 %', true)
+    .addField('**- 최신 브리핑 1 : 코로나바이러스감염증-19 국내 발생 현황 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359764')
+    .addField('**- 최신 브리핑 2 : 코로나바이러스감염증-19 정례브리핑 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359766')
+    .setColor('#6799FF')
+    .setFooter('BOT MADE BY RABBIT', img)
+    
+    
+message.channel.send(embed)
+
+} else if(message.content == '!코로나 경기') {
+  let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+  let embed = new Discord.RichEmbed()
+    .setTitle('코로나-19 경기 현황')
+    .addField('**데이터 출처 : Ministry of Health and Welfare of Korea**', 'http://ncov.mohw.go.kr/index.jsp', true)
+    .addField('**최신 데이터**', '해당 자료는 2020년 9월 6일 00시 기준 자료입니다.')
+    .addField('**확진환자(누적)**', '3,625(+ 47)', true)
+    .addField('**완치환자(격리해제)**', '2,359', true)
+    .addField('**치료중(격리 중)**', '1,221', true)
+    .addField('**사망**', '45', true)
+    .addField('**10만명당 발생률**', '27.36명', true)
+    .addField('**전국대비 확진자 비율**', '17.12 %', true)
+    .addField('**- 최신 브리핑 1 : 코로나바이러스감염증-19 국내 발생 현황 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359764')
+    .addField('**- 최신 브리핑 2 : 코로나바이러스감염증-19 정례브리핑 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359766')
+    .setColor('#6799FF')
+    .setFooter('BOT MADE BY RABBIT', img)
+    
+    
+message.channel.send(embed)
+
+    } else if(message.content == '!재난문자') {
+        let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+        let embed = new Discord.RichEmbed()
+          .setTitle(':loudspeaker: 재난문자')
+          .addField('**데이터 출처 : 대한민국 재난안전포털**', 'https://www.safekorea.go.kr/idsiSFK/neo/main_m/dis/disasterDataList.html')
+          .addField('**2020/07/18 13:00:28 재난문자[함평군청]**', '[함평군청] 7일(월)새벽 영향권 외부부착물(노후간판,첨탑 등)결박,전기차단 창문 빈틈없이 고정 농작물,농업시설등 지주고정,결박 각종 시설물 안전조치')
+          .addField('**2020/07/18 12:44:03 재난문자[순천군청]**', '[순천시청] 태풍 ‘하이선’ 내일 오전 7시 최근접. 강풍 및 집중호우가 예상되니, 해안가, 급경사지 접근 금지, 낙하물 주의, 외출자제 등 안전에 유의바랍니다.')
+          .addField('**2020/07/18 12:21:02 재난문자[고창구청]**', '[고창군청] 7일(월) 0시 태풍예비특보발효, 내일 새벽부터~낮 최대 영향, 저지대 위험지역 주민 사전대피, 각종 시설물 사전 점검, 내일부터는 외출 자제바랍니다.')
+          .setColor('#FF0000#FF0000')
+          .setFooter('최근 발송된 3개의 재난문자를 보여줍니다', img)
+
+    message.channel.send(embed)
+  } else if(message.content == '!오늘의 운세') {
+      const Random = ["오늘은 몸조심 하세요.","오늘은 입조심 하세요.","오늘은 사기당하지않게 조심하세요.","오늘은 실망스러운 일이 일어날 수 있습니다.","오늘은 순조로운 날이 될거에요.","오늘은 기쁨이 가득할거에요.","오늘은 겸손하게 행동하세요.","오늘은 다른 이성에게 고백해보세요.","오늘은 돈이 생길수도 있습니다.","오늘은 일이 잘 풀리지 않을수있습니다.","오늘은 밖에 되도록 나가지 마세요.","오늘은 소원이 이루어질수 있습니다.","오늘은 연상의 연인을 만나게 되는날입니다.","오늘은 연하의 연인을 만나게 되는날입니다.","오늘은 일이 잘 풀리는 날입니다.","오늘은 힘을 사용하는 일을 하지마세요.","오늘은 까실이가 밥을 사줄수도 있어요.","채팅치시다가 점멸 누르지 마세요!","오늘은 왠지 채팅치다가 궁쓸거 같아요ㅠㅠ","노빠꾸로 가시죠!","사릴줄도 알아야 해요!","오늘은 정치질 조심하세요!","오늘 의상은 길거리에서 커플들이 싸울때 구경하면서 지나가는 사람을 구경할것 같은 의상이군요!","밤 길 조심하세요!","미안하다 이거 보여주려고 어그로끌었다.. 나루토 사스케 싸움수준 ㄹㅇ실화냐? 진짜 세계관최강자들의 싸움이다.. 그찐따같던 나루토가 맞나? 진짜 나루토는 전설이다..진짜옛날에 맨날나루토봘는데 왕같은존재인 호카게 되서 세계최강 전설적인 영웅이된나루토보면 진짜내가다 감격스럽고 나루토 노래부터 명장면까지 가슴울리는장면들이 뇌리에 스치면서 가슴이 웅장해진다.. 합체한거봐라 진짜 ㅆㅂ 이거보고 개충격먹어가지고 와 소리 저절로 나오더라? 하.. ㅆㅂ 사스케 보고싶다..  진짜언제 이렇게 신급 최강들이 되었을까 옛날생각나고 나 중딩때생각나고 뭔가 슬프기도하고 좋기도하고 감격도하고 여러가지감정이 복잡하네.. 아무튼 나루토는 진짜 애니중최거명작임..","당신은 이 문자를 발견하셨어요 1/69 의 확률로 나오는 이 문자는 발견시 박준서 키스권을 드립니다!","오늘 의상은 길가는 찐다를 보고 혐오하는 사람을 짝사랑 하던 사람을 구경하던 사람의 친구같은 의상이에요! 아주 완벽하지만 완벽하지 않아요!","오늘은 따뜻하지만 차갑고 뜨거운 아이스 라떼를 먹는건 어떨까요?","내 눈을 바라봐","오늘은 운동을 해봐요!","피하지 말고 즐기세요","오늘은 취킨을 먹을거 같군요!","오늘은 길 가다가 물웅덩이에 빠질것 같군요! 라는 애니 추천좀","오늘은 시간이 빨리갈거에요!","팔굽혀 펴기 쉬지않고 20개 하면 좋은일이 생길거에요!","새로운걸 시도해보세요!","책을 읽어보세요! (야설말고)","등장밑이 어두워요!","당당하게 행동하세요!","겸손하게 행동하세요!","오늘은 입닥치고 사세요!","팔굽혀 펴기 40개를하면 이쁜이성에게 고백받을거에요!","닥치고 버피테스트 10회 하세요","오늘은 시간이 존1나 느리게 갈거에요!","오늘 말하면 거절당합니다!","틱톡광고 면제권 1매","불을끄세요! 당신 램좀보게","알려줘 너의 RGB값","오늘은 흥겨울겁니다!","팔굽혀 펴기 30회를 한다면 존나 행복한 하루가 될수있어요!","오늘니기분 컬러로 말할게 ","공부보다 연습해야할건 현피워","현피보다 연습해야할건 공부워","오늘 고백하면 까입니다!","오늘 고백하면 성공합니다 ","오늘 고백하면 집으로 be back 합니다!(라임 미쳤고","이편지는 영국에서 최초로 시작되어 미안하다 이거보여주려고 어그로 끌었다 봇개발자 관리자 싸움수준 ㄹㅇ 실화냐? 진짜 세계관 최강자들의 싸움이다 관리자가 사회주의의 낙원으로 오세요! 할때 가슴이 웅장해진다 진짜 봇개발자는 전설이다....","안녕하세요 박준서입니다 이 메세지는 10000분의 1확률로 나오는 메세지입니다 까실서버 이용해주셔서 감사하고요 봇도 잘 이용해 주셔서 감사합니다 처음시작할땐 반응이 좋은거 같다가 반응이 다시 사그라 들었는데요 다시이렇게 많지는 않지만 제게는 많게느껴지는 사람들이 와서 놀고있으니까 정말 기쁩니다 정말 감사하고요 잘 이용해 주세요!","밖에한번 나가봐요!","집에있기보다 날씨가 좋다면 나가서 미세먼지좀 마시고 오세요","집에있기보다 날씨가 좋다면 나가서 미세먼지좀 마시고 오세요","선풍기 바람보다 밖에나가서 미세먼지 섞인 바람을 느끼세요!","운동을 하는건 어떨까요?"]
+      const Real = Random[Math.floor(Math.random()*Random.length) + 1]
+     let img = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+      let user_name = message.author.username
+      const Embed = new Discord.RichEmbed()
+        .setFooter(user_name + "님의 오늘의 운세", img)
+        .setTitle(Real)
+
+    message.channel.send(Embed)
+  } else if(message.content == '!핑') {
+      const Random = ["43ms","41ms","31ms","22ms","53ms","26ms","43ms","41ms","31ms","22ms","53ms","26ms","43ms","41ms","31ms","22ms","53ms","26ms","43ms","41ms","31ms","22ms","53ms","26ms"]
+      const Real = Random[Math.floor(Math.random()*Random.length) + 1]
+      const Embed = new Discord.RichEmbed()
+        .setFooter('BOT MADE BY RABBIT')
+        .setTitle(Real)
+
+    message.channel.send(Embed)
+  } else if(message.content == '!도움') {
+      let helpImg = 'https://media.discordapp.net/attachments/699520044811550773/721287727659745360/1.png';
+      let commandList = [
+        {name: '!도움', desc: '도움!'},
+        {name: '!코로나', desc: '코로나!'},
+        {name: '!재난문자', desc: '최근 재난문자 3개를 보여줍니다!'},
+        {name: '!날씨', desc: '오늘의 날씨 보기!'},
+        {name: '!한강물온도', desc: '한강물의 온도 보기!'},
+        {name: '!청소 (관리자)', desc: '텍스트 지우기!'},
+        {name: '!오늘의 운세', desc: '오늘의 운세를 알려줍니다.'},
+        {name: '!핑', desc: '봇의 핑을 알려줍니다.'},
+        {name: '!역할추가 (관리자)', desc: '!역할추가 @이름 @역할 으로 역할을 추가합니다.'},
+        {name: '봇에게 DM', desc: '봇의 버그나 문제가 있을시 봇에게 DM 보내면 됩니다.'},
+        {name: '!정보', desc: '봇의 정보를 보여줍니다.'},
+    ];
+      let commandStr = '';
+      let embed = new Discord.RichEmbed()
+        .setAuthor('도움', helpImg)
+        .setColor('#ff00df')
+        .setFooter(`BOT MADE BY RABBIT`)
+        commandList.forEach(x => {
+          commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
+        });
+
+    embed.addField('명령어: ', commandStr);
+   
+    message.channel.send(embed)
+
   } else if(message.content.startsWith('!청소')) {
     if(message.channel.type == 'dm') {
-      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
+      return message.reply('`dm에서 사용할 수 없는 명령어 입니다.`');
     }
     
     if(message.channel.type != 'dm' && checkPermission(message)) return
@@ -237,7 +332,7 @@ client.on('message', (message) => {
     var isNum = !isNaN(clearLine)
 
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
-      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
+      message.channel.send("`1부터 100까지의 숫자만 입력해주세요.`")
       return;
     } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
@@ -260,13 +355,13 @@ client.on('message', (message) => {
     } else {
       message.channel.bulkDelete(parseInt(clearLine)+1)
         .then(() => {
-          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "개의 메시지를 삭제했습니다. (이 메세지는 잠시 후에 사라집니다.)");
+          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "`개의 메시지를 삭제했습니다. (이 메세지는 잠시 후에 사라집니다.)`");
         })
         .catch(console.error)
     }
   } else if(message.content.startsWith('!강퇴')) {
     if(message.channel.type == 'dm') {
-      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
+      return message.reply('`dm에서 사용할 수 없는 명령어 입니다.`');
     }
     
     if(message.channel.type != 'dm' && checkPermission(message)) return
@@ -274,7 +369,7 @@ client.on('message', (message) => {
     console.log(message.mentions);
 
     let userId = message.mentions.users.first().id;
-    let kick_msg = message.author.username+'#'+message.author.discriminator+'이(가) 강퇴시켰습니다.';
+    let kick_msg = message.author.username+'#'+message.author.discriminator+'`이(가) 강퇴시켰습니다.`';
     
     message.member.guild.members.find(x => x.id == userId).kick(kick_msg)
   } else if(message.content.startsWith('!밴')) {
@@ -287,7 +382,7 @@ client.on('message', (message) => {
     console.log(message.mentions);
 
     let userId = message.mentions.users.first().id;
-    let kick_msg = message.author.username+'#'+message.author.discriminator+'이(가) 강퇴시켰습니다.';
+    let kick_msg = message.author.username+'#'+message.author.discriminator+'`이(가) 밴시켰습니다.`';
 
     message.member.guild.members.find(x => x.id == userId).ban(kick_msg)
   }
@@ -295,7 +390,7 @@ client.on('message', (message) => {
 
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-    message.channel.send(`<@${message.author.id}> ` + "명령어를 수행할 관리자 권한을 소지하고 있지않습니다.")
+    message.channel.send(`<@${message.author.id}> ` + "`당신은 관리자 권한이 없습니다!`")
     return true;
   } else {
     return false;
