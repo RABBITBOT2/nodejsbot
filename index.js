@@ -272,7 +272,7 @@ message.channel.send(embed)
           .addField('**2020/07/18 13:00:28 재난문자[함평군청]**', '[함평군청] 7일(월)새벽 영향권 외부부착물(노후간판,첨탑 등)결박,전기차단 창문 빈틈없이 고정 농작물,농업시설등 지주고정,결박 각종 시설물 안전조치')
           .addField('**2020/07/18 12:44:03 재난문자[순천군청]**', '[순천시청] 태풍 ‘하이선’ 내일 오전 7시 최근접. 강풍 및 집중호우가 예상되니, 해안가, 급경사지 접근 금지, 낙하물 주의, 외출자제 등 안전에 유의바랍니다.')
           .addField('**2020/07/18 12:21:02 재난문자[고창구청]**', '[고창군청] 7일(월) 0시 태풍예비특보발효, 내일 새벽부터~낮 최대 영향, 저지대 위험지역 주민 사전대피, 각종 시설물 사전 점검, 내일부터는 외출 자제바랍니다.')
-          .setColor('#FF0000#FF0000')
+          .setColor('#FF0000')
           .setFooter('최근 발송된 3개의 재난문자를 보여줍니다', img)
 
     message.channel.send(embed)
@@ -285,12 +285,18 @@ message.channel.send(embed)
         .setFooter(user_name + "님의 오늘의 운세", img)
         .setTitle(Real)
 
-  client.on('message', (message) => {
-    if(message.content == '!핑') return
-    if(message.content.startsWith(config.prefix + 'ping')) {
-      message.channel.send(client.ping + ' ms')
-    }
-  })
+        if(cmd === `!핑`) {
+  
+                message.channel.send("핑...").then(m =>{
+                    var ping = m.createdTimestamp - message.createdTimestamp;
+        
+                    var embed = new Discord.MessageEmbed()
+                    .setAuthor(`${ping}Ms`)
+                    .setColor("#ffffff")
+                    
+                    m.edit(embed)
+                });
+            }
 
     message.channel.send(Embed)
   } else if(message.content == '!도움') {
