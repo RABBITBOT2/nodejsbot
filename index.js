@@ -287,7 +287,7 @@ message.channel.send(embed)
 
       } else if(message.content == '!핑') {
         let embed = new Discord.RichEmbed()
-        .setDescription(client.ping + ' ms')
+        .setDescription(client.ws.ping + ' ms')
         .setColor("#ffffff")
 
     message.channel.send(embed)
