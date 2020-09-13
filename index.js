@@ -285,13 +285,12 @@ message.channel.send(embed)
         .setFooter(user_name + "님의 오늘의 운세", img)
         .setTitle(Real)
 
-    message.channel.send(Embed)
-  } else if(message.content == '!핑') {
-      const Random = ["43ms","41ms","31ms","22ms","53ms","26ms","43ms","41ms","31ms","22ms","53ms","26ms","43ms","41ms","31ms","22ms","53ms","26ms","43ms","41ms","31ms","22ms","53ms","26ms"]
-      const Real = Random[Math.floor(Math.random()*Random.length) + 1]
-      const Embed = new Discord.RichEmbed()
-        .setFooter('BOT MADE BY RABBIT')
-        .setTitle(Real)
+  client.on('message', (message) => {
+    if(message.content == '!핑') return
+    if(message.content.startsWith(config.prefix + 'ping')) {
+      message.channel.send(client.ping + ' ms')
+    }
+  })
 
     message.channel.send(Embed)
   } else if(message.content == '!도움') {
