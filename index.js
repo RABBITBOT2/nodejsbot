@@ -288,7 +288,7 @@ message.channel.send(embed)
           } else if(message.content == '!핑') {
             let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
             let embed = new Discord.RichEmbed()
-            .setAuthor(`${ping}Ms`)
+            .setAuthor(client.ping + ' ms')
             .setColor("#ffffff")
     
         message.channel.send(embed)
