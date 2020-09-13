@@ -11,7 +11,7 @@ const adminUserId = 477076429058605056;
 
 client.on('ready', () => {
   console.log('봇이켜졌습니다');
-  client.user.setActivity('!도움', { type: 'STREAMING', url: 'https://www.twitch.tv/'});
+  client.user.setActivity('!도움', { type: 'STREAMING', url: 'https://www.twitch.tv/rnrygus0613'});
 
   let state_list = [
     '!도움',
