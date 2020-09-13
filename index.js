@@ -285,18 +285,14 @@ message.channel.send(embed)
         .setFooter(user_name + "님의 오늘의 운세", img)
         .setTitle(Real)
 
-        if(cmd === `!핑`) {
-  
-                message.channel.send("핑...").then(m =>{
-                    var ping = m.createdTimestamp - message.createdTimestamp;
-        
-                    var embed = new Discord.MessageEmbed()
-                    .setAuthor(`${ping}Ms`)
-                    .setColor("#ffffff")
-                    
-                    m.edit(embed)
-                });
-            }
+          } else if(message.content == '!핑') {
+            let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
+            let embed = new Discord.RichEmbed()
+            .setAuthor(`${ping}Ms`)
+            .setColor("#ffffff")
+    
+        message.channel.send(embed)
+
 
     message.channel.send(Embed)
   } else if(message.content == '!도움') {
