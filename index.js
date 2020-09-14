@@ -115,7 +115,6 @@ client.on('message', (message) => {
     }
     list += `\`\`\`\n`
     embed.addField('list:',        `${list}`);
-
     embed.setTimestamp()
     message.channel.send(embed);
   }
@@ -187,6 +186,15 @@ client.on('message', (message) => {
         .setFooter('BOT MADE BY RABBIT', img)
     message.channel.send(embed)
                 
+  } else if(message.content == '!핑') {
+    let embed = new Discord.RichEmbed()
+    .setTitle('핑(MS)')
+    .setDescription('`client.ping`' + ' `MS`')
+    .setColor("RANDOM")
+    embed.setTimestamp()
+message.channel.send(embed)
+
+
     } else if(message.content == '!코로나 전국') {
       let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let embed = new Discord.RichEmbed()
