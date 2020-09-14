@@ -141,7 +141,7 @@ client.on('message', (message) => {
           .setColor('#0011ff')
           .setFooter('2020년 09월 06일 기준입니다', img)
       message.channel.send(embed)
-    } else if(message.content == '!한강물온도') {
+    } else if(message.content == '!내정보') {
       const embed = new Discord.RichEmbed()
           .setColor("RANDOM")
           .setThumbnail(message.author.avatarURL)
