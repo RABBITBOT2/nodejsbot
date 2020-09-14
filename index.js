@@ -403,6 +403,16 @@ message.channel.send(embed)
   }
 });
 
+function checkPermission(message) {
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) {
+    message.channel.send(`<@${message.author.id}> ` + "`관리자 권한을 소지하고 있지않습니다.`")
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
 function changeCommandStringLength(str, limitLen = 8) {
   let tmp = str;
   limitLen -= tmp.length;
