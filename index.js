@@ -92,7 +92,7 @@ client.on('message', (message) => {
     let embed = new Discord.RichEmbed()
     let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
     var duration = moment.duration(client.uptime).format(" D [일], H [시간], m [분], s [초]");
-    embed.setColor('#186de6')
+    embed.setColor('RANDOM')
     embed.setAuthor('까실서버봇의 정보', img)
     embed.setFooter(`BOT MADE BY RABBIT`)
     embed.addBlankField()
@@ -189,7 +189,7 @@ client.on('message', (message) => {
   } else if(message.content == '!핑') {
     let embed = new Discord.RichEmbed()
     .setTitle('핑(MS)')
-    .setDescription('`client.ping`' + ' `MS`')
+    .setDescription(`client.ping` + ' `MS`')
     .setColor("RANDOM")
     embed.setTimestamp()
 message.channel.send(embed)
