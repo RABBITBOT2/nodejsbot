@@ -372,7 +372,7 @@ message.channel.send(embed)
     }
   } else if(message.content.startsWith('!강퇴')) {
     if(message.channel.type == 'dm') {
-      return message.reply('`dm에서 사용할 수 없는 명령어 입니다.`');
+      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
     }
     
     if(message.channel.type != 'dm' && checkPermission(message)) return
@@ -380,7 +380,7 @@ message.channel.send(embed)
     console.log(message.mentions);
 
     let userId = message.mentions.users.first().id;
-    let kick_msg = message.author.username+'#'+message.author.discriminator+'`이(가) 강퇴시켰습니다.`';
+    let kick_msg = message.author.username+'#'+message.author.discriminator+'이(가) 강퇴시켰습니다.';
     
     message.member.guild.members.find(x => x.id == userId).kick(kick_msg)
   } else if(message.content.startsWith('!밴')) {
@@ -393,20 +393,11 @@ message.channel.send(embed)
     console.log(message.mentions);
 
     let userId = message.mentions.users.first().id;
-    let kick_msg = message.author.username+'#'+message.author.discriminator+'`이(가) 밴시켰습니다.`';
+    let kick_msg = message.author.username+'#'+message.author.discriminator+'이(가) 강퇴시켰습니다.';
 
     message.member.guild.members.find(x => x.id == userId).ban(kick_msg)
   }
 });
-
-function checkPermission(message) {
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-    message.channel.send(`<@${message.author.id}> ` + "`당신은 관리자 권한이 없습니다!`")
-    return true;
-  } else {
-    return false;
-  }
-}
 
 function changeCommandStringLength(str, limitLen = 8) {
   let tmp = str;
