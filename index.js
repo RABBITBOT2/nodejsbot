@@ -189,7 +189,7 @@ client.on('message', (message) => {
   } else if(message.content == '!핑') {
     let embed = new Discord.RichEmbed()
     .setTitle('핑(MS)')
-    .setDescription(`client.ping` + ' `MS`')
+    .setDescription(client.ping + ' `MS`')
     .setColor("RANDOM")
     embed.setTimestamp()
 message.channel.send(embed)
