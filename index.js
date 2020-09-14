@@ -318,6 +318,8 @@ message.channel.send(embed)
         {name: '!정보', desc: '봇의 정보를 보여줍니다.'},
         {name: '!주사위', desc: '주사위를 굴려줍니다.'},
         {name: '!초대코드', desc: '까실서버 초대코드를 보내줍니다.'},
+        {name: '!강퇴 (관리자)', desc: '!강퇴 @이름 을 하면 강퇴를 합니다.'},
+        {name: '!밴 (관리자)', desc: '!밴 @이름 을 하면 밴을 합니다.'},
     ];
       let commandStr = '';
       let embed = new Discord.RichEmbed()
