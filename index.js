@@ -141,25 +141,22 @@ client.on('message', (message) => {
           .setColor('#0011ff')
           .setFooter('2020년 09월 06일 기준입니다', img)
       message.channel.send(embed)
-
-    } else if(message.content == '!내정보') {
-      let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
-      let embed = new Discord.RichEmbed()
-      let user = message.mentions.users.first() || message.author;
-      const joinDiscord = moment(user.createdAt).format('llll');
-      const joinServer = moment(user.joinedAt).format('llll');
-      let embed = new Discord.RichEmbed()
-          .setAuthor(user.username + '#' + user.discriminator, user.displayAvatarURL)
-          .setDescription(`${user}`)
-          .setColor(`RANDOM`)
-          .setThumbnail(`${user.displayAvatarURL}`)
-          .addField('Joined at:', `${moment.utc(user.joinedAt).format('dddd, MMMM Do YYYY, HH:mm:ss')}`, true)
-          .addField('Status:', user.presence.status, true)
-          .addField('Roles:', user.roles.map(r => `${r}`).join(' | '), true)
-          .setFooter(`ID: ${user.id}`)
-          .setTimestamp();
-    
-          message.channel.send(embed)
+    } else if(message.content == '!한강물온도') {
+      const embed = new Discord.RichEmbed()
+          .setColor("RANDOM")
+          .setThumbnail(message.author.avatarURL)
+          .addField(`${user.tag}`, `${user}`, true)
+          .addField("ID:", `${user.id}`, true)
+          .addField("Nickname:", `${member.nickname !== null ? `${member.nickname}` : 'None'}`, true)
+          .addField("Status:", `${user.presence.status}`, true)
+          .addField("In Server", message.guild.name, true)
+          .addField("Game:", `${user.presence.game ? user.presence.game.name : 'None'}`, true)
+          .addField("Bot:", `${user.bot}`, true)
+          .addField("Joined The Server On:", `${moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY")}`, true)
+          .addField("Account Created On:", `${moment.utc(user.createdAt).format("dddd, MMMM Do YYYY")}`, true) 
+          .addField("Roles:", member.roles.map(roles => `${roles}`).join(', '), true)
+          .setFooter(`Replying to ${message.author.username}#${message.author.discriminator}`)
+      message.channel.send(embed)
     
 
 
