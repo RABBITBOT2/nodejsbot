@@ -289,13 +289,7 @@ message.channel.send(embed)
       const Embed = new Discord.RichEmbed()
         .setFooter(user_name + "님의 오늘의 운세", img)
         .setTitle(Real)
-
-      } else if(message.content == '!핑') {
-        let embed = new Discord.RichEmbed()
-        .setDescription(client.ws.ping + ' ms')
-        .setColor("#ffffff")
-
-    message.channel.send(embed)
+        message.channel.send(embed)
 
 
     message.channel.send(Embed)
