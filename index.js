@@ -289,9 +289,6 @@ message.channel.send(embed)
       const Embed = new Discord.RichEmbed()
         .setFooter(user_name + "님의 오늘의 운세", img)
         .setTitle(Real)
-        message.channel.send(embed)
-
-
     message.channel.send(Embed)
   } else if(message.content == '!도움') {
       let helpImg = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
