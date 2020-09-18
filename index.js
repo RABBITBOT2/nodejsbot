@@ -304,6 +304,14 @@ message.channel.send(embed)
     return message.reply(`${dice_num} 이(가) 나왔습니다.`);
 
 
+  } else if(message.content.startsWith('!랜덤숫자')) {
+    let min = 1;
+    let max = 9999999;
+    let dice_num = parseInt(Math.random() * (max - min) + min);
+    return message.reply(`${dice_num} 이(가) 나왔습니다.`);
+
+
+
   } else if(message.content == '!도움') {
       let helpImg = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let commandList = [
