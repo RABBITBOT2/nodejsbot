@@ -57,9 +57,6 @@ client.on("guildMemberRemove", (member) => {
 });
 
 client.on('message', (message) => {
-  if(message.content === '!초대코드') {
-    message.reply('https://discord.gg/pEKuapz');
-  }
   if(message.author.bot) return;
 
   if(message.channel.type == 'dm') {
@@ -158,18 +155,6 @@ client.on('message', (message) => {
     embed.setTimestamp()
     message.channel.send(embed)
       
-  } else if(message.content == '!초대코드2') {
-    client.guilds.array().forEach(x => {
-      x.channels.find(x => x.type == 'text').createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
-        .then(invite => {
-          message.channel.send(invite.url)
-        })
-        .catch((err) => {
-          if(err.code == 50013) {
-            message.channel.send('**'+x.channels.find(x => x.type == 'text').guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
-          }
-        })
-    });
   } else if(message.content == '!초대코드') {
     if(message.channel.type == 'dm') {
       return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
@@ -178,14 +163,6 @@ client.on('message', (message) => {
       .then(invite => {
         message.channel.send(invite.url)
       })
-      .catch((err) => {
-        if(err.code == 50013) {
-          message.channel.send('**'+message.guild.channels.get(message.channel.id).guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
-        }
-      })
-
-
-
 
               } else if(message.content == '!코로나') {
                   let helpImg = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
