@@ -187,28 +187,6 @@ client.on('message', (message) => {
         return message.reply('채널에서 실행해주세요.');
       }
 
-              } else if(message.content == '!코로나') {
-                  let helpImg = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
-                  let commandList = [
-                    {name: '!코로나 전국', desc: '코로나 전국'},
-                    {name: '!코로나 서울', desc: '코로나 서울'},
-                    {name: '!코로나 인천', desc: '코로나 인천'},
-                    {name: '!코로나 경기', desc: '코로나 경기'},
-                    {name: '!코로나 순위', desc: '코로나 순위'},
-                ];
-                  let commandStr = '';
-                  let embed = new Discord.RichEmbed()
-                    .setAuthor('코로나', helpImg)
-                    .setColor('#ff00df')
-                    .setFooter(`BOT MADE BY RABBIT`)
-                    commandList.forEach(x => {
-                      commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
-                    });
-            
-                embed.addField('명령어: ', commandStr);
-                embed.setTimestamp()
-                message.channel.send(embed)
-                
      } else if(message.content == '!코로나 순위') {
       let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let embed = new Discord.RichEmbed()
@@ -359,7 +337,11 @@ message.channel.send(embed)
       let commandList = [
         {name: '!공지사항', desc: '까실서버의 공지사항들을 알려줍니다.'},
         {name: '!도움', desc: '도움!'},
-        {name: '!코로나', desc: '코로나!'},
+        {name: '!코로나 전국', desc: '코로나 전국'},
+        {name: '!코로나 서울', desc: '코로나 서울'},
+        {name: '!코로나 인천', desc: '코로나 인천'},
+        {name: '!코로나 경기', desc: '코로나 경기'},
+        {name: '!코로나 순위', desc: '코로나 순위'},
         {name: '!재난문자', desc: '최근 재난문자 3개를 보여줍니다!'},
         {name: '!날씨', desc: '오늘의 날씨 보기!'},
         {name: '!한강물온도', desc: '한강물의 온도 보기!'},
@@ -371,6 +353,7 @@ message.channel.send(embed)
         {name: '!정보', desc: '봇의 정보를 보여줍니다.'},
         {name: '!주사위', desc: '주사위를 굴려줍니다.'},
         {name: '!초대코드', desc: '까실서버 초대코드를 보내줍니다.'},
+        {name: '!전체공지 (관리자)', desc: '!전체공지 내용을 하면 DM으로 전체공지를 합니다.'},
         {name: '!강퇴 (관리자)', desc: '!강퇴 @이름 을 하면 강퇴를 합니다.'},
         {name: '!밴 (관리자)', desc: '!밴 @이름 을 하면 밴을 합니다.'},
         {name: '!랜덤숫자', desc: '랜덤으로 숫자를 띄워줍니다(77777이 나오면 선물드립니다)'},
