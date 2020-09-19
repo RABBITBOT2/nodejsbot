@@ -307,7 +307,6 @@ message.channel.send(embed)
       const Embed = new Discord.RichEmbed()
         .setFooter(user_name + "님의 오늘의 운세", img)
         .setTitle(Real)
-        embed.setTimestamp()
     message.channel.send(Embed)
 
 
