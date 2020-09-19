@@ -147,25 +147,19 @@ client.on('message', (message) => {
 
 
 
-    } else if(message.content == '!11111') {
-      let commandList = [
-        {name: '>Username: ', desc: `${message.author.username}`},
-        {name: '>discriminator: ', desc: `${message.author.discriminator}`},
-        {name: '>ID: ', desc: `${message.author.id}`},
-        {name: '>Avatar: ', desc: `${message.author.avatarURL}`},
-        {name: '>Created at: ', desc: `${message.author.createdAt}`},
-    ];
-      let commandStr = '';
+    } else if(message.content == '!유저정보') {
+      let img = `${message.author.avatarURL}`
       let embed = new Discord.RichEmbed()
-        .setTitle("Users Info")
-        .setColor('RANDOM')
-        .setFooter(`BOT MADE BY RABBIT`)
-        commandList.forEach(x => {
-          commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : ${x.desc}\n`;
-        });
-        
-    embed.addField('  ', commandStr);
-           
+      .setTitle(message.author.username+"의 유저정보")
+      .setThumbnail(img)
+      .setColor("#9B59B6")
+      .addField("전체이름", `${message.author.username}#${message.author.discriminator}`,true)
+      .addField("이름", `${message.author.username}`, true)
+      .addField("태그", `${message.author.discriminator}`, true)
+      .addField("아이디", `${message.author.id}`, true)
+      .addField("프로필링크", `[프로필사진 링크](${message.author.avatarURL})`, true)
+      .addField("만든날짜", `${message.author.createdAt}`)
+      .addField("들어온날짜", message.member.joinedAt)
     message.channel.send(embed)
 
 
@@ -382,6 +376,7 @@ message.channel.send(embed)
         {name: '!강퇴 (관리자)', desc: '!강퇴 @이름 을 하면 강퇴를 합니다.'},
         {name: '!밴 (관리자)', desc: '!밴 @이름 을 하면 밴을 합니다.'},
         {name: '!랜덤숫자', desc: '랜덤으로 숫자를 띄워줍니다(77777이 나오면 선물드립니다)'},
+        {name: '!유저정보', desc: '유저의 정보를 보여줍니다.'},
     ];
       let commandStr = '';
       let embed = new Discord.RichEmbed()
