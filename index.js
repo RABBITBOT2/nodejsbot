@@ -168,13 +168,14 @@ client.on('message', (message) => {
       if(checkPermission(message)) return
       if(message.member != null) { // 채널에서 공지 쓸 때
         let contents = message.content.slice('!전체공지'.length);
+        let img = message.author.avatar ? `https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128` : undefined;
         let embed = new Discord.RichEmbed()
-          .setAuthor('까실서버 공지')
+          .setTitle('까실서버 전체 =공지사항')
           .setColor('RANDOM')
           .setFooter(`BOT MADE BY RABBIT`)
           .setTimestamp()
     
-        embed.addField('공지: ', contents);
+        embed.addField('공지', contents);
     
         message.member.guild.members.array().forEach(x => {
           if(x.user.bot) return;
