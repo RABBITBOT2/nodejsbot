@@ -145,6 +145,31 @@ client.on('message', (message) => {
           embed.setTimestamp()
       message.channel.send(embed)
 
+
+
+    } else if(message.content == '!11111') {
+      let commandList = [
+        {name: '>Username: ', desc: `${message.author.username}`},
+        {name: '>discriminator: ', desc: `${message.author.discriminator}`},
+        {name: '>ID: ', desc: `${message.author.id}`},
+        {name: '>Avatar: ', desc: `${message.author.avatarURL}`},
+        {name: '>Created at: ', desc: `${message.author.createdAt}`},
+    ];
+      let commandStr = '';
+      let embed = new Discord.RichEmbed()
+        .setTitle("Users Info")
+        .setColor('RANDOM')
+        .setFooter(`BOT MADE BY RABBIT`)
+        commandList.forEach(x => {
+          commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : ${x.desc}\n`;
+        });
+        
+    embed.addField('  ', commandStr);
+           
+    message.channel.send(embed)
+
+
+
     } else if(message.content == '!공지사항') {
       let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let embed = new Discord.RichEmbed()
