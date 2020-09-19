@@ -164,6 +164,28 @@ client.on('message', (message) => {
         message.channel.send(invite.url)
       })
 
+    } else if(message.content.startsWith('!전체공지')) {
+      if(checkPermission(message)) return
+      if(message.member != null) { // 채널에서 공지 쓸 때
+        let contents = message.content.slice('!전체공지'.length);
+        let embed = new Discord.RichEmbed()
+          .setAuthor('까실서버 공지')
+          .setColor('RANDOM')
+          .setFooter(`BOT MADE BY RABBIT`)
+          .setTimestamp()
+    
+        embed.addField('공지: ', contents);
+    
+        message.member.guild.members.array().forEach(x => {
+          if(x.user.bot) return;
+          x.user.send(embed)
+        });
+    
+        return message.reply('공지를 전송했습니다.');
+      } else {
+        return message.reply('채널에서 실행해주세요.');
+      }
+
               } else if(message.content == '!코로나') {
                   let helpImg = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
                   let commandList = [
