@@ -136,7 +136,7 @@ client.on('message', (message) => {
       .addField('**오존지수**', '보통(0.031ppm)', true)
       .setColor('#F5FF00')
       .setFooter('2020년 09월 06일 기준입니다', img)
-
+      embed.setTimestamp()
       message.channel.send(embed)
     } else if(message.content == '!한강물온도') {
         let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
@@ -145,13 +145,14 @@ client.on('message', (message) => {
           .addField('**한강물의 온도**', '22.1℃', true)
           .setColor('#0011ff')
           .setFooter('2020년 09월 06일 기준입니다', img)
+          embed.setTimestamp()
       message.channel.send(embed)
 
     } else if(message.content == '!공지사항') {
       let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let embed = new Discord.RichEmbed()
         .setTitle('까실서버 공지사항')
-        .setDescription('```diff\n-2020.03.02.\n+공지사항 채널이 생겼습니다. 여기서는 기자단과 관리자들이 성명 발표를 하거나 정책변경시 늬우스를 전해드리겠습니다\n```')
+        .setDescription('```diff\n-2020.03.02.\n+공지사항 채널이 생겼습니다.\n+여기서는 기자단과 관리자들이 성명 발표를 하거나 정책변경시 늬우스를 전해드리겠습니다\n```')
         .setColor('#FF0000')
         .setFooter('까실서버 공지')
     embed.setTimestamp()
@@ -176,7 +177,7 @@ client.on('message', (message) => {
                     });
             
                 embed.addField('명령어: ', commandStr);
-               
+                embed.setTimestamp()
                 message.channel.send(embed)
                 
      } else if(message.content == '!코로나 순위') {
@@ -196,6 +197,7 @@ client.on('message', (message) => {
         .addField('**울산 ■■■■■ (113)**', '**전북 ■■■ (90)**')
         .addField('**세종 ■■ (67)**', '**제주 ■ (48)**')
         .setFooter('BOT MADE BY RABBIT', img)
+        embed.setTimestamp()
     message.channel.send(embed)
                 
   } else if(message.content == '!핑') {
@@ -222,6 +224,7 @@ message.channel.send(embed)
         .addField('**- 최신 브리핑 2 : 코로나바이러스감염증-19 정례브리핑 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359766')
         .setColor('#6799FF')
         .setFooter('BOT MADE BY RABBIT', img)
+        embed.setTimestamp()
     message.channel.send(embed)
 
   } else if(message.content == '!코로나 인천') {
@@ -240,7 +243,7 @@ message.channel.send(embed)
       .addField('**- 최신 브리핑 2 : 코로나바이러스감염증-19 정례브리핑 (9월 6일)**', '링크 : http://ncov.mohw.go.kr/tcmBoardView.do?contSeq=359766')
       .setColor('#6799FF')
       .setFooter('BOT MADE BY RABBIT', img)
-      
+      embed.setTimestamp()
       
   message.channel.send(embed)
 
@@ -261,7 +264,7 @@ message.channel.send(embed)
     .setColor('#6799FF')
     .setFooter('BOT MADE BY RABBIT', img)
     
-    
+    embed.setTimestamp()
 message.channel.send(embed)
 
 } else if(message.content == '!코로나 경기') {
@@ -281,7 +284,7 @@ message.channel.send(embed)
     .setColor('#6799FF')
     .setFooter('BOT MADE BY RABBIT', img)
     
-    
+    embed.setTimestamp()
 message.channel.send(embed)
 
     } else if(message.content == '!재난문자') {
@@ -294,7 +297,7 @@ message.channel.send(embed)
           .addField('**2020/07/18 12:21:02 재난문자[고창구청]**', '[고창군청] 7일(월) 0시 태풍예비특보발효, 내일 새벽부터~낮 최대 영향, 저지대 위험지역 주민 사전대피, 각종 시설물 사전 점검, 내일부터는 외출 자제바랍니다.')
           .setColor('#FF0000')
           .setFooter('최근 발송된 3개의 재난문자를 보여줍니다', img)
-
+          embed.setTimestamp()
     message.channel.send(embed)
   } else if(message.content == '!오늘의 운세') {
       const Random = ["오늘은 순조로운날이에요","오늘은 다른 이성에게 고백해보세요","소원을 한번 빌어보세요 아무일도 일어나지 않지만 그냥 빌어보세요","용기내서 말하면 소원이 이루어집니다 ","이 문자는 10000분의 1로 나오는 까실서버봇 키스권을 드립니다","팔굽혀 펴기 20회를 쉬지않고 가동범위 최대로 한다면 좋아하는 이성에게 고백받을거에요","턱걸이 연속 5개 또는 머슬업 1개라도 성공시 좋아하는 이성에게 69%로 고백받을수 있어요","당당하게 행동하면 좋은일이 생깁니다","우울한 음악을 듣지말고 기쁜노래만 들으려고 하세요","오늘은 연상의 연인과 만나는 날이에요","오늘은 동갑의 연인과 만나는 날이에요 ","당신이 가진 패가 좋은 패여도 절대 보여주지 마세요","오늘은 이쁜여자를 만날수 있지만 고백하면 차입니다","이글을 본다면 당신에게 관리자 권한을 주지 않지아니한다는 부분에 저 박준서는 동의하지 않지않다는 점에서 매우 찬성하지 아니하면 저의 의견을 매우 지지하지 않는다는 모습을 본 저는 당신에게 관리자를 주고싶지 않지아니하지않습니다","열심히 하는 벌꿀이 되어서 온 우주가 나서서 도와주도록 하는 벌꿀 넣을게","첫번째 정답과 바꾼 정답이 햇갈린다면 첫번째 정답으로 하세요 ","자신을 비난하지 마세요","배려하면서 살면 의견충돌로 인한 싸움이 없어요","자신이 잘못한 행동이 있으면 시원하게 말하고 발 쭉 뻗고 자세요 ","자기관리를 꾸준히 하세요","갑자기 이유없이 짜증난다면 심호흡 한번하세요 ","지구가 사실 평평하답니다! 당신도 믿으세요!  전 안믿을 겁니다!","가짜뉴스를 거르는 능력을 기를필요가 있어보이네요","이기적인 사람은 멀리하세요 당신이 간디만큼 너그럽지 않다면 멀리하세요 ","남들이 하기싫어하는 일이 있으면 하려고 하세요","일찍일어나고 일찍 자는 습관이 삶의 질을 바꿉니다 ","늦잠 자지말고 일찍 일어날 자신없으면 늦게 자지도 마세요 ","운동을 하다가 지쳐서 더이상 할수없을때 한개만 더 해도 자극이 많이오니까 한개라도 더 하고 끝내세요","항상 자기 뜯대로 일이 풀리지는 않습니다 그니까 뭐 실망스러운 일이 있어도 자책하지 마시고 좋은일 있으면 최대한 기뻐하세요","이상한 컨셉잡는걸 하지마세요 좆같은 컨셉은 사람들도 불쾌합니다","모임에 없는사람을 욕하는 사람을 멀리하고 맞장구 치지 마세요 ","이 운세믿지말고 본인이 스스로 하는것도 좋을거 같네요","무조건 하나만 정답이라고 생각하지 마세요","뭐든지 연습을 많이하세요 ","진짜 억울한 일이있으면 침착하세요 ","남을 속이려고 하지말고 남을 속이려는 사람과는 멀리하세요","약속을 자주 어기는사람과는 어울리지 마세요","누군가 당신에거 갑작스럽게 다가오면 의심부터 하세요","문제가 안풀리면 친구에게 공유하세요 ","진짜 믿을수 있는사람이 아니면 되도록 믿지 마세요","우울하다면 가장 잘하는걸 해보세요","운동을 하면서 얻는 보람을 느껴보세요","말 하기전에 한번만 더 생각해보세요","노빠꾸다 라면서 함부로 이성에게 고백하지 마세요 ","자신이 가장 잘할수 있는걸 찾아보세요","와","뒷광고는 환영입니다"]
@@ -304,6 +307,7 @@ message.channel.send(embed)
       const Embed = new Discord.RichEmbed()
         .setFooter(user_name + "님의 오늘의 운세", img)
         .setTitle(Real)
+        embed.setTimestamp()
     message.channel.send(Embed)
 
 
@@ -325,6 +329,7 @@ message.channel.send(embed)
   } else if(message.content == '!도움') {
       let helpImg = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let commandList = [
+        {name: '!공지사항', desc: '까실서버의 공지사항들을 알려줍니다.'},
         {name: '!도움', desc: '도움!'},
         {name: '!코로나', desc: '코로나!'},
         {name: '!재난문자', desc: '최근 재난문자 3개를 보여줍니다!'},
@@ -352,7 +357,7 @@ message.channel.send(embed)
         });
 
     embed.addField('명령어: ', commandStr);
-   
+    embed.setTimestamp()
     message.channel.send(embed)
 
   } else if(message.content.startsWith('!청소')) {
