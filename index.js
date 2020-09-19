@@ -305,8 +305,9 @@ message.channel.send(embed)
      let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let user_name = message.author.username
       const Embed = new Discord.RichEmbed()
-        .setFooter(user_name + "님의 오늘의 운세", img)
+        .setFooter(user_name + "님의 오늘의 운세")
         .setTitle(Real)
+        embed.setTimestamp()
     message.channel.send(Embed)
 
 
