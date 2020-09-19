@@ -170,7 +170,7 @@ client.on('message', (message) => {
         let contents = message.content.slice('!전체공지'.length);
         let img = message.author.avatar ? `https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128` : undefined;
         let embed = new Discord.RichEmbed()
-          .setTitle('까실서버 전체 =공지사항')
+          .setTitle('까실서버 전체 공지사항')
           .setColor('RANDOM')
           .setFooter(`BOT MADE BY RABBIT`)
           .setTimestamp()
