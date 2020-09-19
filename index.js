@@ -13,7 +13,7 @@ const adminUserId = 477076429058605056;
 
 client.on('ready', () => {
   console.log('봇이켜졌습니다');
-  client.user.setActivity('Among Us', { type: 'STREAMING', url: 'https://www.twitch.tv/rnrygus0613'});
+  client.user.setActivity('!도움', { type: 'STREAMING', url: 'https://www.twitch.tv/rnrygus0613'});
 
   let state_list = [
     '!도움',
@@ -146,6 +146,16 @@ client.on('message', (message) => {
           .setColor('#0011ff')
           .setFooter('2020년 09월 06일 기준입니다', img)
       message.channel.send(embed)
+
+    } else if(message.content == '!공지사항') {
+      let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
+      let embed = new Discord.RichEmbed()
+        .setTitle('까실서버 공지사항')
+        .setDescription('```diff\n-2020.03.02.\n+공지사항 채널이 생겼습니다. 여기서는 기자단과 관리자들이 성명 발표를 하거나 정책변경시 늬우스를 전해드리겠습니다\n```')
+        .setColor('#FF0000')
+        .setFooter('까실서버 공지')
+    embed.setTimestamp()
+    message.channel.send(embed)
       
               } else if(message.content == '!코로나') {
                   let helpImg = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
