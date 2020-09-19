@@ -148,7 +148,7 @@ client.on('message', (message) => {
     } else if(message.content == '!공지사항') {
       let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
       let embed = new Discord.RichEmbed()
-        .setTitle('까실서버 공지사항')
+        .setTitle('까실서버 공지사항',img)
         .setDescription('**```diff\n-2020.03.02.\n+공지사항 채널이 생겼습니다.\n+여기서는 기자단과 관리자들이 성명 발표를 하거나 정책변경시 늬우스를 전해드리겠습니다\n```** **```diff\n-2020.03.02.\n+앞으로 우리 가-실서버의 기득권들의 횡포를 위해 반란을 논하는자가 나오면 그자의 목은 몹시 위험해질 것 입니다\n```** **```diff\n-2020.03.23.\n+이 서버에 들어올려면 디스코드 이메일 인증이 완료되고 5분이 지나야 들어올 수 있습니다\n```** **```diff\n-2020.05.26.\n+오늘부터 원맨쇼 금지입니다\n+솔직히 뭔말인지 모를분 계실겁니다\n+이서버에서 원맨쇼의 정의 알려드릴게요\n+혼자 부계를 파거나 파서 자기랑 자기가 대화하는것, 자아분열로 의심되는 행동이 보일경우 숙청입니다 이게 은근 하는얘들도 있고 싫어하는 사람도 많아서 금지시키겠습니다\n```** **```diff\n-2020.05.28.\n+그리고 노래가 매인 컨텐츠인 영상외에 틀면 제제당합니다!\n+명령어는 잡담에서 치지말고 명령어 방에서 치세요\n```** **```diff\n-2020.06.07.\n+에브리원 태그 맨날 쓰는것도 그렇고 아예 안쓰는것도 그러니까 한명당 1주일에 한번씩만 에브리원 태그 쓰도록 합시다\n```** **```diff\n-2020.08.11.\n+이런행동을 하면 뮤트를 당합니다!\n+1. 똑같은 단어나 문장을 5번이상 1분안에 보낼경우\n+2. 삭제빌런을 과도하게 할 경우\n+3. 통화방을 과도하게 들락날락 할 경우\n```** **```diff\n-2020.09.13.\n+봇에 관한 피드백이나 봇버그 같은거 있으면 봇에게 DM해주세요.\n```** **```diff\n-2020.09.19\n+봇기능 추가 요청 할때 db필요한거는 요청하지 마세여. 자바에 필요한 db를 다룰줄도 모르고 요청할거면 db파일 들고오세요. (db는 데이터베이스입니다. 이거 없어도 만들수는 있는데 봇 껏다 키면 다 초기화 됩니다.)\n```**')
         .setColor('#FF0000')
         .setFooter('까실서버 공지')
@@ -170,12 +170,12 @@ client.on('message', (message) => {
         let contents = message.content.slice('!전체공지'.length);
         let img = message.author.avatar ? `https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128` : undefined;
         let embed = new Discord.RichEmbed()
-          .setTitle('까실서버 전체 공지사항')
+          .setTitle('까실서버 전체 공지사항',img)
           .setColor('RANDOM')
           .setFooter(`BOT MADE BY RABBIT`)
           .setTimestamp()
     
-        embed.addField('공지', contents);
+        embed.setDescription(contents);
     
         message.member.guild.members.array().forEach(x => {
           if(x.user.bot) return;
