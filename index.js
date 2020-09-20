@@ -151,7 +151,7 @@ client.on('message', (message) => {
       let embed = new Discord.RichEmbed()
       .setTitle(message.author.username+"의 유저정보")
       .setThumbnail(img)
-      .setColor("#9B59B6")
+      .setColor("RANDOM")
       .addField("전체이름", `${message.author.username}#${message.author.discriminator}`,true)
       .addField("이름", `${message.author.username}`, true)
       .addField("태그", `${message.author.discriminator}`, true)
