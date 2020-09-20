@@ -10,7 +10,6 @@ const byeChannelName = "오늘의이슈";
 const welcomeChannelComment = "`님이 입장했습니다.`";
 const byeChannelComment = "`님이 퇴장했습니다.`";
 const adminUserId = 477076429058605056;
-const weather = require('weather-js');
 
 client.on('ready', () => {
   console.log('봇이켜졌습니다');
@@ -121,7 +120,7 @@ client.on('message', (message) => {
     message.channel.send(embed)
   }
 
-  if(message.content == '!00000') {
+  if(message.content == '!날씨') {
     let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
     let embed = new Discord.RichEmbed()
       .setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')

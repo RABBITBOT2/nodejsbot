@@ -11,7 +11,6 @@
     "discord.js": "^11.5.1",
     "moment": "^2.28.0",
     "moment-duration-format": "^2.2.1",
-    "moment-timezone": "^0.5.31",
-    "weather-js": "^2.0.0"
+    "moment-timezone": "^0.5.31"
   }
 }
