@@ -38,6 +38,40 @@ client.on('ready', () => {
   // changeState();
 });
 
+
+client.on("message", message => {
+  let msg = message.content.toUpperCase();
+  let cont = message.content.split("");
+  let args = cont.slice(1);
+  if (msg.startsWith('!날씨')) {
+    weather.find({search: args.join(""), degreeType: 'C'}, function(err, result) {
+      if (err) message.channel.send(err);
+      if (result.length === 0) {
+        const embed = new Discord.RichEmbed()
+        .setTitle('오류 404')
+        .setDescription('올바른 지역을 입력해주세요.')
+        message.channel.send(embed)
+      }
+      var current = result[0].current;
+      var location = result[0].location;
+      const embed = new Discord.RichEmbed()
+      .setDescription(`${current.skytext}`)
+      .setThumbnail(current.imageUrl)
+      .setAuthor(`입력한지역 ${current.observationpoint}`)
+      .setColor(0x00ae86)
+      .addField('시간대',`UTC${location.timezone}`, true)
+      .addField('온도',`${current.temperature}`, true)
+      .addField('체감온도',`${current.feelslike}`, true)
+      .addField('바람',`${current.winddisplay}`, true)
+      .addField('습도',`${current.humidity}`, true)
+      message.channel.send(embed)
+    });
+  }
+});
+
+
+
+
 client.on("guildMemberAdd", (member) => {
   const guild = member.guild;
   const newUser = member.user;
@@ -120,7 +154,7 @@ client.on('message', (message) => {
     message.channel.send(embed)
   }
 
-  if(message.content == '!날씨') {
+  if(message.content == '!0000') {
     let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
     let embed = new Discord.RichEmbed()
       .setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
