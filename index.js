@@ -119,21 +119,22 @@ client.on('message', (message) => {
     //embed.addField('list:',        `${list}`);
     embed.setTimestamp()
     message.channel.send(embed)
+  }
 
-  //if(message.content == '!날씨') {
-    //let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
-    //let embed = new Discord.RichEmbed()
-      //.setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
-      //.addField('**온도**', '최저 21˚\n최고26˚', true)
-     //.addField('**체감온도**', '21.9˚', true)
-      //.addField('**날씨**', '비', true)
-      //.addField('**미세먼지**', '좋음(56㎍/㎥)', true)
-      //.addField('**초미세먼지**', '좋음(35㎍/㎥)', true)
-      //.addField('**오존지수**', '보통(0.031ppm)', true)
-      //.setColor('#F5FF00')
-      //.setFooter('2020년 09월 06일 기준입니다', img)
-      //embed.setTimestamp()
-      //message.channel.send(embed)
+  if(message.content == '!00000') {
+    let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
+    let embed = new Discord.RichEmbed()
+      .setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
+      .addField('**온도**', '최저 21˚\n최고26˚', true)
+      .addField('**체감온도**', '21.9˚', true)
+      .addField('**날씨**', '비', true)
+      .addField('**미세먼지**', '좋음(56㎍/㎥)', true)
+      .addField('**초미세먼지**', '좋음(35㎍/㎥)', true)
+      .addField('**오존지수**', '보통(0.031ppm)', true)
+      .setColor('#F5FF00')
+      .setFooter('2020년 09월 06일 기준입니다', img)
+      embed.setTimestamp()
+      message.channel.send(embed)
 
 
 lient.on("message", message => {
@@ -166,9 +167,9 @@ lient.on("message", message => {
         .addField('습도',`${current.humidity}%`, true)
         embed.setTimestamp()
         message.channel.send(embed)
-    })
-  }
-})
+      })
+    }
+  })
 
 
 
