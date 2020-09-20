@@ -48,23 +48,24 @@ client.on("message", message => {
       if (err) message.channel.send(err);
       if (result.length === 0) {
         const embed = new Discord.RichEmbed()
-        .setTitle('오류 404')
+        .setTitle('오류')
         .setDescription('올바른 지역을 입력해주세요.')
+        .setColor('#FF0000')
+        embed.setTimestamp()
         message.channel.send(embed)
         return;
       }
       var current = result[0].current;
       var location = result[0].location;
       const embed = new Discord.RichEmbed()
-      .setDescription(`${current.skytext}`)
       .setThumbnail(current.imageUrl)
-      .setAuthor(`입력한지역 ${current.observationpoint}`)
-      .setColor(0x00ae86)
-      .addField('시간대',`UTC${location.timezone}`, true)
-      .addField('온도',`${current.temperature}`, true)
-      .addField('체감온도',`${current.feelslike}`, true)
+      .setTitle(`${current.observationpoint}의 날씨`)
+      .setColor('#F5FF00')
+      .addField('날씨',`${current.skytext}`, true)
+      .addField('온도',`${current.temperature}˚`, true)
+      .addField('체감온도',`${current.feelslike}˚`, true)
       .addField('바람',`${current.winddisplay}`, true)
-      .addField('습도',`${current.humidity}`, true)
+      .addField('습도',`${current.humidity}%`, true)
       message.channel.send(embed)
     });
   }
@@ -152,22 +153,22 @@ client.on('message', (message) => {
     message.channel.send(embed)
   }
 
-  if(message.content == '!0000') {
-    let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
-    let embed = new Discord.RichEmbed()
-      .setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
-      .addField('**온도**', '최저 21˚\n최고26˚', true)
-      .addField('**체감온도**', '21.9˚', true)
-      .addField('**날씨**', '비', true)
-      .addField('**미세먼지**', '좋음(56㎍/㎥)', true)
-      .addField('**초미세먼지**', '좋음(35㎍/㎥)', true)
-      .addField('**오존지수**', '보통(0.031ppm)', true)
-      .setColor('#F5FF00')
-      .setFooter('2020년 09월 06일 기준입니다', img)
-      embed.setTimestamp()
-      message.channel.send(embed)
+  //if(message.content == '!날씨') {
+    //let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
+    //let embed = new Discord.RichEmbed()
+      //.setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
+      //.addField('**온도**', '최저 21˚\n최고26˚', true)
+      //.addField('**체감온도**', '21.9˚', true)
+      //.addField('**날씨**', '비', true)
+      //.addField('**미세먼지**', '좋음(56㎍/㎥)', true)
+      //.addField('**초미세먼지**', '좋음(35㎍/㎥)', true)
+      //.addField('**오존지수**', '보통(0.031ppm)', true)
+      //.setColor('#F5FF00')
+      //.setFooter('2020년 09월 06일 기준입니다', img)
+      //embed.setTimestamp()
+      //message.channel.send(embed)
 
-    } else if(message.content == '!한강물온도') {
+if(message.content == '!한강물온도') {
         let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
         let embed = new Discord.RichEmbed()
           .setTitle(':ocean: 현재 한강물의 온도')
