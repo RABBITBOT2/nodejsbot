@@ -66,6 +66,7 @@ client.on("message", message => {
       .addField('체감온도',`${current.feelslike}˚`, true)
       .addField('바람',`${current.winddisplay}`, true)
       .addField('습도',`${current.humidity}%`, true)
+      embed.setTimestamp()
       message.channel.send(embed)
     });
   }
