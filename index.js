@@ -98,14 +98,14 @@ client.on('message', (message) => {
     embed.setTitle('까실서버봇의 정보')
     embed.setFooter(`BOT MADE BY RABBIT`)
     embed.setThumbnail(img)
-    embed.addField('RAM usage',    `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
-    embed.addField('running time', `${duration}`, true);
-    embed.addField('user',         `${client.users.size.toLocaleString()}`, true);
-    embed.addField('server',       `${client.guilds.size.toLocaleString()}`, true);
-    //embed.addField('channel',      `${client.channels.size.toLocaleString()}`, true);
-    embed.addField('Discord.js',   `v${Discord.version}`, true);
-    embed.addField('Node',         `${process.version}`, true);
-    embed.addField('오픈소스',      `[링크](https://github.com/RABBITBOT2/nodejsbot)`, true)
+    embed.addField('RAM 사용량', `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
+    embed.addField('실행 시간', `${duration}`, true);
+    embed.addField('유저수', `${client.users.size.toLocaleString()}`, true);
+    embed.addField('서버수', `${client.guilds.size.toLocaleString()}`, true);
+    //embed.addField('channel', `${client.channels.size.toLocaleString()}`, true);
+    embed.addField('Discord.js 버전', `v${Discord.version}`, true);
+    embed.addField('Node 버전', `${process.version}`, true);
+    embed.addField('오픈소스', `[링크](https://github.com/RABBITBOT2/nodejsbot)`, true)
     //let arr = client.guilds.array();
     //let list = '';
     //list = `\`\`\`css\n`;
