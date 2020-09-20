@@ -345,7 +345,7 @@ message.channel.send(embed)
 
   } else if(message.content.startsWith('!랜덤숫자')) {
     let min = 1;
-    let max = 9999999;
+    let max = 999999;
     let dice_num = parseInt(Math.random() * (max - min) + min);
     return message.reply(`${dice_num} 이(가) 나왔습니다.`);
 
