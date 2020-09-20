@@ -107,16 +107,16 @@ client.on('message', (message) => {
     embed.addField('Node',         `${process.version}`, true);
     embed.addField('오픈소스',      `https://github.com/RABBITBOT2/nodejsbot`, true)
     
-    let arr = client.guilds.array();
-    let list = '';
-    list = `\`\`\`css\n`;
+    //let arr = client.guilds.array();
+    //let list = '';
+    //list = `\`\`\`css\n`;
     
-    for(let i=0;i<arr.length;i++) {
+    //for(let i=0;i<arr.length;i++) {
       // list += `${arr[i].name} - ${arr[i].id}\n`
-      list += `${arr[i].name}\n`
-    }
-    list += `\`\`\`\n`
-    embed.addField('list:',        `${list}`);
+      //list += `${arr[i].name}\n`
+    //}
+    //list += `\`\`\`\n`
+    //embed.addField('list:',        `${list}`);
     embed.setTimestamp()
     message.channel.send(embed);
   }
