@@ -12,7 +12,6 @@
     "moment": "^2.20.1",
     "moment-duration-format": "^2.2.1",
     "moment-timezone": "^0.5.31",
-    "weather": "^1.0.4",
     "weather-js": "^2.0.0"
   }
 }

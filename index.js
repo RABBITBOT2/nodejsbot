@@ -136,6 +136,41 @@ client.on('message', (message) => {
       //message.channel.send(embed)
 
 
+lient.on("message", message => {
+  let msg = message.content.toUpperCase();
+  let cont = message.content.split(" ");
+  let args = cont.slice(1);
+
+  if (msg.startsWith('!날씨')) {
+
+    weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) {
+      if (err) message.channel.send(err);
+
+      if (result.length === 0) {
+        message.channel.send('**올바른 위치를 입력해주세요.**')
+        return;
+      }
+
+      var current = result[0].current;
+      var location = result[0].location;
+      
+      const embed = new Discord.RichEmbed()
+        .setTitle(`${current.observationpoint}의 날씨`)
+        .setThumbnail(current.imageUrl)
+        .setColor('#F5FF00')
+        .addField('시간대',`${location.timezone}`, true)
+        .addField('날씨',`${current.skytext}`, true)
+        .addField('온도',`${current.temperature}˚`, true)
+        .addField('체감온도',`${current.fellslike}˚`, true)
+        .addField('바람',`${current.winddisplay}`, true)
+        .addField('습도',`${current.humidity}%`, true)
+        embed.setTimestamp()
+        message.channel.send(embed)
+    })
+  }
+})
+
+
 
 
     } else if(message.content == '!한강물온도') {
