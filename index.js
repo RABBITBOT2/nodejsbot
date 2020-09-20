@@ -10,6 +10,7 @@ const byeChannelName = "오늘의이슈";
 const welcomeChannelComment = "`님이 입장했습니다.`";
 const byeChannelComment = "`님이 퇴장했습니다.`";
 const adminUserId = 477076429058605056;
+const weather = require('weather-js');
 
 client.on('ready', () => {
   console.log('봇이켜졌습니다');
@@ -38,10 +39,9 @@ client.on('ready', () => {
   // changeState();
 });
 
-
 client.on("message", message => {
   let msg = message.content.toUpperCase();
-  let cont = message.content.split("");
+  let cont = message.content.split(" ");
   let args = cont.slice(1);
   if (msg.startsWith('!날씨')) {
     weather.find({search: args.join(""), degreeType: 'C'}, function(err, result) {
@@ -51,6 +51,7 @@ client.on("message", message => {
         .setTitle('오류 404')
         .setDescription('올바른 지역을 입력해주세요.')
         message.channel.send(embed)
+        return;
       }
       var current = result[0].current;
       var location = result[0].location;
@@ -68,9 +69,6 @@ client.on("message", message => {
     });
   }
 });
-
-
-
 
 client.on("guildMemberAdd", (member) => {
   const guild = member.guild;
