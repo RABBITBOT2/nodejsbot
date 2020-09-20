@@ -10,6 +10,7 @@ const byeChannelName = "오늘의이슈";
 const welcomeChannelComment = "`님이 입장했습니다.`";
 const byeChannelComment = "`님이 퇴장했습니다.`";
 const adminUserId = 477076429058605056;
+const weather = require('weather-js');
 
 client.on('ready', () => {
   console.log('봇이켜졌습니다');
@@ -117,23 +118,26 @@ client.on('message', (message) => {
     //list += `\`\`\`\n`
     //embed.addField('list:',        `${list}`);
     embed.setTimestamp()
-    message.channel.send(embed);
-  }
+    message.channel.send(embed)
 
-  if(message.content == '!날씨') {
-    let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
-    let embed = new Discord.RichEmbed()
-      .setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
-      .addField('**온도**', '최저 21˚\n최고26˚', true)
-      .addField('**체감온도**', '21.9˚', true)
-      .addField('**날씨**', '비', true)
-      .addField('**미세먼지**', '좋음(56㎍/㎥)', true)
-      .addField('**초미세먼지**', '좋음(35㎍/㎥)', true)
-      .addField('**오존지수**', '보통(0.031ppm)', true)
-      .setColor('#F5FF00')
-      .setFooter('2020년 09월 06일 기준입니다', img)
-      embed.setTimestamp()
-      message.channel.send(embed)
+  //if(message.content == '!날씨') {
+    //let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
+    //let embed = new Discord.RichEmbed()
+      //.setTitle(':white_sun_cloud: 인천광역시 부평의 오늘날씨')
+      //.addField('**온도**', '최저 21˚\n최고26˚', true)
+     //.addField('**체감온도**', '21.9˚', true)
+      //.addField('**날씨**', '비', true)
+      //.addField('**미세먼지**', '좋음(56㎍/㎥)', true)
+      //.addField('**초미세먼지**', '좋음(35㎍/㎥)', true)
+      //.addField('**오존지수**', '보통(0.031ppm)', true)
+      //.setColor('#F5FF00')
+      //.setFooter('2020년 09월 06일 기준입니다', img)
+      //embed.setTimestamp()
+      //message.channel.send(embed)
+
+
+
+
     } else if(message.content == '!한강물온도') {
         let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
         let embed = new Discord.RichEmbed()
