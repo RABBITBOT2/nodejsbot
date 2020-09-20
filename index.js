@@ -102,11 +102,10 @@ client.on('message', (message) => {
     embed.addField('running time', `${duration}`, true);
     embed.addField('user',         `${client.users.size.toLocaleString()}`, true);
     embed.addField('server',       `${client.guilds.size.toLocaleString()}`, true);
-    embed.addField('channel',      `${client.channels.size.toLocaleString()}`, true);
+    //embed.addField('channel',      `${client.channels.size.toLocaleString()}`, true);
     embed.addField('Discord.js',   `v${Discord.version}`, true);
     embed.addField('Node',         `${process.version}`, true);
     embed.addField('오픈소스',      `[링크](https://github.com/RABBITBOT2/nodejsbot)`, true)
-    embed.addBlankField()
     //let arr = client.guilds.array();
     //let list = '';
     //list = `\`\`\`css\n`;
