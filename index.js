@@ -95,9 +95,9 @@ client.on('message', (message) => {
     let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
     var duration = moment.duration(client.uptime).format(" D [일], H [시간], m [분], s [초]");
     embed.setColor('RANDOM')
-    embed.setTitle('까실서버봇의 정보', img)
+    embed.setTitle('까실서버봇의 정보')
     embed.setFooter(`BOT MADE BY RABBIT`)
-    embed.addBlankField()
+    embed.setThumbnail(img)
     embed.addField('RAM usage',    `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
     embed.addField('running time', `${duration}`, true);
     embed.addField('user',         `${client.users.size.toLocaleString()}`, true);
