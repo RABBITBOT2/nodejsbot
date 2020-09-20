@@ -41,7 +41,7 @@ client.on('ready', () => {
 
 client.on("message", message => {
   let msg = message.content.toUpperCase();
-  let cont = message.content.split(" ");
+  let cont = message.content.split("");
   let args = cont.slice(1);
   if (msg.startsWith('!날씨')) {
     weather.find({search: args.join(""), degreeType: 'C'}, function(err, result) {
