@@ -495,6 +495,7 @@ message.channel.send(embed)
     {name: '!초대코드', desc: '까실서버 초대코드를 보내줍니다.'},
     {name: '!랜덤숫자', desc: '랜덤으로 숫자를 띄워줍니다(77777이 나오면 선물드립니다)'},
     {name: '!유저정보', desc: '유저의 정보를 보여줍니다.'},
+    {name: '!들어와', desc: '봇이 음성채널에 들어옵니다.'},
 ];
   let commandStr = '';
   let embed = new Discord.RichEmbed()
