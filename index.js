@@ -90,7 +90,7 @@ client.on("guildMemberAdd", (member) => {
   const newUser = member.user;
   const welcomeChannel = guild.channels.find(channel => channel.name == welcomeChannelName);
 
-  welcomeChannel.send(`📥 **${newUser.username}**${welcomeChannelComment}\n`);
+  welcomeChannel.send(`📥 <@${newUser.id}>${welcomeChannelComment}\n`);
 
   member.addRole(guild.roles.find(role => role.name == "일반인"));
 });
