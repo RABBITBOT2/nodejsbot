@@ -39,6 +39,18 @@ client.on('ready', () => {
   // changeState();
 });
 
+client.on('message', async message => {
+  if (!message.guild) return;
+  if (message.content === '!들어와') {
+    if (message.member.voiceChannel.channel) {
+      const connection = await
+message.member.voiceChannel.channel.join();
+    } else {
+      message.reply('`먼저 음성채널에 들어와주세요`');
+    }
+    }
+  });
+
 client.on("message", message => {
   let msg = message.content.toUpperCase();
   let cont = message.content.split("");

@@ -7,11 +7,14 @@
     "r": "node index.js"
   },
   "dependencies": {
+    "@discordjs/opus": "^0.3.2",
     "axios": "^0.20.0",
     "discord.js": "^11.5.1",
+    "ffmpeg-static": "^4.2.7",
     "moment": "^2.28.0",
     "moment-duration-format": "^2.2.1",
     "moment-timezone": "^0.5.31",
+    "opusscript": "0.0.7",
     "weather-js": "^2.0.0"
   }
 }
