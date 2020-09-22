@@ -100,7 +100,7 @@ client.on("guildMemberRemove", (member) => {
   const deleteUser = member.user;
   const byeChannel = guild.channels.find(channel => channel.name == byeChannelName);
 
-  byeChannel.send(`*${deleteUser.name}* ${byeChannelComment}\n`);
+  byeChannel.send(`*${deleteUser.username}* ${byeChannelComment}\n`);
 });
 
 client.on('message', (message) => {
