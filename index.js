@@ -36,7 +36,7 @@ client.on('ready', () => {
     }, change_delay);
   }
 
-  changeState();
+  //changeState();
 });
 
 //client.on('message', async message => {
