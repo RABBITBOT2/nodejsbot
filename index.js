@@ -12,6 +12,7 @@ const byeChannelComment = "`님이 퇴장했습니다.`";
 const adminUserId = 477076429058605056;
 const weather = require('weather-js');
 const covid = require('novelcovid')
+const { getTemp } = require("hangang");
 
 client.on('ready', () => {
   console.log('봇이켜졌습니다');
@@ -86,26 +87,26 @@ client.on("message", message => {
   }
 });
 
-client.on('message', async message => {
-  if (message.content.startsWith(`!test`)) {
-    const covidStats = await covid.all()
-    return message.channel.send(new Discord.MessageEmbed()
-    .setTitle('코로나 수치')
-    .setColor('red')
-    .addField(
-      { name: `Cases`, value: covidStats.cases.toLocaleString(), inline:true },
-      { name: `Cases Today`, value: covidStats.todaycases.toLocaleString(), inline:true },
-      { name: `deaths`, value: covidStats.deaths.toLocaleString(), inline:true },
-      { name: `deaths today`, value: covidStats.todayDeaths.toLocaleString(), inline:true },
-      { name: `recovered`, value: covidStats.recovered.toLocaleString(), inline:true },
-      { name: `recovered today`, value: covidStats.todayRecovered.toLocaleString(), inline:true },
-      { name: `Infected Right Now`, value: covidStats.active.toLocaleString(), inline:true },
-      { name: `Critical Condition`, value: covidStats.critical.toLocaleString(), inline:true },
-      { name: `tested`, value: covidStats.tests.toLocaleString(), inline:true },
-    )
-    )
-  }
-})
+//client.on('message', async message => {
+  //if (message.content.startsWith(`!test`)) {
+    //const covidStats = await covid.all()
+    //return message.channel.send(new Discord.MessageEmbed()
+    //.setTitle('코로나 수치')
+    //.setColor('red')
+    //.addField(
+      //{ name: `Cases`, value: covidStats.cases.toLocaleString(), inline:true },
+      //{ name: `Cases Today`, value: covidStats.todaycases.toLocaleString(), inline:true },
+      //{ name: `deaths`, value: covidStats.deaths.toLocaleString(), inline:true },
+      //{ name: `deaths today`, value: covidStats.todayDeaths.toLocaleString(), inline:true },
+      //{ name: `recovered`, value: covidStats.recovered.toLocaleString(), inline:true },
+      //{ name: `recovered today`, value: covidStats.todayRecovered.toLocaleString(), inline:true },
+      //{ name: `Infected Right Now`, value: covidStats.active.toLocaleString(), inline:true },
+      //{ name: `Critical Condition`, value: covidStats.critical.toLocaleString(), inline:true },
+      //{ name: `tested`, value: covidStats.tests.toLocaleString(), inline:true },
+    //)
+    //)
+  //}
+//})
 
 client.on("guildMemberAdd", (member) => {
   const guild = member.guild;
@@ -231,7 +232,11 @@ if(message.content == '!한강물온도') {
       .addField("들어온날짜", message.member.joinedAt)
     message.channel.send(embed)
 
-
+    } else if(message.content == '!1') {
+      let embed = new Discord.RichEmbed()
+      .setDescription(`${await getTemp()} c`)
+      embed.setTimestamp()
+      message.channel.send(embed)
 
     } else if(message.content == '!공지사항') {
       let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
