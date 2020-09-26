@@ -232,11 +232,11 @@ if(message.content == '!한강물온도') {
       .addField("들어온날짜", message.member.joinedAt)
     message.channel.send(embed)
 
-    } else if(message.content == '!1') {
-      let embed = new Discord.RichEmbed()
-      .setDescription(`${await getTemp()} c`)
-      embed.setTimestamp()
-      message.channel.send(embed)
+    //} else if(message.content == '!1') {
+      //let embed = new Discord.RichEmbed()
+      //.setDescription(`${await getTemp()} c`)
+      //embed.setTimestamp()
+      //message.channel.send(embed)
 
     } else if(message.content == '!공지사항') {
       let img = 'https://cdn.discordapp.com/avatars/733149844453195889/d29d770374b576cf541e3b0e5ea3abc3.png?size=128';
