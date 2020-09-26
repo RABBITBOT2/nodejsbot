@@ -87,26 +87,26 @@ client.on("message", message => {
   }
 });
 
-//client.on('message', async message => {
-  //if (message.content.startsWith(`!test`)) {
-    //const covidStats = await covid.all()
-    //return message.channel.send(new Discord.MessageEmbed()
-    //.setTitle('코로나 수치')
-    //.setColor('red')
-    //.addField(
-      //{ name: `Cases`, value: covidStats.cases.toLocaleString(), inline:true },
-      //{ name: `Cases Today`, value: covidStats.todaycases.toLocaleString(), inline:true },
-      //{ name: `deaths`, value: covidStats.deaths.toLocaleString(), inline:true },
-      //{ name: `deaths today`, value: covidStats.todayDeaths.toLocaleString(), inline:true },
-      //{ name: `recovered`, value: covidStats.recovered.toLocaleString(), inline:true },
-      //{ name: `recovered today`, value: covidStats.todayRecovered.toLocaleString(), inline:true },
-      //{ name: `Infected Right Now`, value: covidStats.active.toLocaleString(), inline:true },
-      //{ name: `Critical Condition`, value: covidStats.critical.toLocaleString(), inline:true },
-      //{ name: `tested`, value: covidStats.tests.toLocaleString(), inline:true },
-    //)
-    //)
-  //}
-//})
+client.on('message', async message => {
+  if (message.content.startsWith(`!test`)) {
+    const covidStats = await covid.all()
+    return message.channel.send(new Discord.MessageEmbed()
+    .setTitle('코로나 수치')
+    .setColor('red')
+    .addField(
+      { name: `Cases`, value: covidStats.cases.toLocaleString(), inline:true },
+      { name: `Cases Today`, value: covidStats.todaycases.toLocaleString(), inline:true },
+      { name: `deaths`, value: covidStats.deaths.toLocaleString(), inline:true },
+      { name: `deaths today`, value: covidStats.todayDeaths.toLocaleString(), inline:true },
+      { name: `recovered`, value: covidStats.recovered.toLocaleString(), inline:true },
+      { name: `recovered today`, value: covidStats.todayRecovered.toLocaleString(), inline:true },
+      { name: `Infected Right Now`, value: covidStats.active.toLocaleString(), inline:true },
+      { name: `Critical Condition`, value: covidStats.critical.toLocaleString(), inline:true },
+      { name: `tested`, value: covidStats.tests.toLocaleString(), inline:true },
+    )
+    )
+  }
+})
 
 client.on("guildMemberAdd", (member) => {
   const guild = member.guild;
